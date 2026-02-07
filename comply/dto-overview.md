@@ -101,4 +101,3 @@ The system tracks program version for curriculum updates and links programs to E
 3. **Enabled (default for club two-seaters):** Any flight with instructor as PIC and second occupant automatically receives FIS designation
 4. **Disabled:** Flights require manual FIS designation or are not counted toward instructor recency
 5. Setting affects automatic recency calculations and training record generation
-

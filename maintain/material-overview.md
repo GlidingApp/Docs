@@ -63,7 +63,7 @@ Pilots sign the inspection with their four-digit PIN, added as security verifica
 
 Materials can be **archived** to create complete backup exports of all associated data. Archives include flights, parts, maintenance programs with all tasks, workorders with task completion records and uploaded files, defects with messages and attachments, documents with all versions, and hour registration records. The system generates a ZIP file with all uploaded files organized by type.
 
-Archiving serves multiple purposes: annual record retention for regulatory compliance, material decommissioning documentation, ownership transfer packages, or periodic backups. **Scheduled export** sends archive files nightly to a configured email address—enter an email in the export field to activate automatic daily archiving. 
+Archiving serves multiple purposes: annual record retention for regulatory compliance, material decommissioning documentation, or ownership transfer packages. You can **schedule ** a backup to send the sends archive files that night to a configured email. 
 
 ## Admin Actions
 
