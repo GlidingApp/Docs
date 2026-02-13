@@ -43,7 +43,7 @@ Maintenance programs contain pre-defined task lists that specify the work to be 
 **Permission:** "Can update equipment"
 
 **How:**
-1. Navigate to material → **Maintenance** tab
+1. Navigate to equipment → **Maintenance** tab
 2. Click **Import** button
 3. Download desired maintenance program file (.txt format) from shared drive folder (link provided in modal)
 4. Select downloaded file for import
@@ -57,7 +57,7 @@ Maintenance programs contain pre-defined task lists that specify the work to be 
 **Permission:** "Can update equipment"
 
 **How:**
-1. Navigate to material → **Maintenance** tab
+1. Navigate in equipment → **Maintenance** tab
 2. Click **Export** button
 3. Select programs to export (can select multiple)
 4. System generates .txt file containing program structure, tasks, intervals, and settings

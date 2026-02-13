@@ -16,7 +16,7 @@ Workorder tasks are hierarchical with parent tasks containing subtasks. Each tas
 
 ### 3. Certificate Release to Service (CRS)
 
-Upon workorder completion, the system generates a **Certificate Release to Service (CRS)** per EASA M.A.801(e).5. The CRS documents all work performed, parts installed, maintenance programs completed, defects resolved, and limitations. Technicians digitally sign the CRS with their AML (Aircraft Maintenance License) number and pincode. The CRS is a legally binding document certifying the aircraft is airworthy following maintenance. It references completed maintenance programs, resolved defects, installed parts, and any limitations. The PDF is automatically generated from workorder data and stored in the material documents library with the signing technician's name, AML number, and timestamp.
+Upon workorder completion, the system generates a **Certificate Release to Service (CRS)** per EASA M.A.801(e).5. The CRS documents all work performed, parts installed, maintenance programs completed, defects resolved, and limitations. Technicians digitally sign the CRS with their AML (Aircraft Maintenance License) number and pincode. The CRS is a legally binding document certifying the aircraft is airworthy following maintenance. It references completed maintenance programs, resolved defects, installed parts, and any limitations. The PDF is automatically generated from workorder data and stored in the equipment documents library with the signing technician's name, AML number, and timestamp.
 
 ### 4. Airworthiness Review Certificate (ARC)
 
@@ -34,7 +34,7 @@ Tasks have **restriction** settings controlling who can sign them off. Restricti
 
 ### 6. Workorder Documents and Limitations
 
-Workorders can link to material documents (maintenance manuals, service bulletins, parts documentation) for reference during execution. When tasks are deferred or work is incomplete, **limitations** must be documented explaining what was not completed and any operating restrictions. Document links provide technicians quick access to procedures and specifications. Limitations are mandatory when completing a workorder with unsigned tasks - they document what was deferred, why, and any restrictions on aircraft operation until the work is completed. Limitations appear on the CRS and affect material availability status.
+Workorders can link to equipment documents (maintenance manuals, service bulletins, parts documentation) for reference during execution. When tasks are deferred or work is incomplete, **limitations** must be documented explaining what was not completed and any operating restrictions. Document links provide technicians quick access to procedures and specifications. Limitations are mandatory when completing a workorder with unsigned tasks - they document what was deferred, why, and any restrictions on aircraft operation until the work is completed. Limitations appear on the CRS and affect equipment availability status.
 
 ## Admin actions
 
@@ -45,7 +45,7 @@ Workorders can link to material documents (maintenance manuals, service bulletin
 **Permission:** "POM technicians" (for aircraft) or "Technicians"
 
 **How:**
-1. Navigate to material → **Workorders** tab → Select workorder
+1. Navigate to equipment → **Workorders** tab → Select workorder
 2. Click **Complete** button (only enabled for technicians with appropriate restriction)
 3. Review task completion status: signed tasks (green check), critical tasks checked (double check), unsigned tasks
 4. For unsigned tasks: either sign them off individually, or choose to sign all remaining tasks, or defer with limitations
@@ -63,7 +63,7 @@ Workorders can link to material documents (maintenance manuals, service bulletin
 **Permission:** "POM technicians" (AML number required for AMP), "Technicians" (for non-aviation)
 
 **How:**
-1. Navigate to material → **Workorders** tab → Select completed workorder
+1. Navigate to equipment → **Workorders** tab → Select completed workorder
 2. Click **Sign CRS** button (only enabled after workorder completion)
 3. Read certification statement: 'I certify that specified work has been completed per Part-ML and aircraft can be released to service'
 4. Check certification checkbox to confirm
