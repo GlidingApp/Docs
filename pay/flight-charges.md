@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Flight Charges** automatically calculate and apply billing for flight operations based on configurable products. Each product defines which flights to charge (via filters), which members to charge (based on paying member assignment and group membership), and how much to charge (via pricing rules). The system runs calculations nightly to accommodate same-day flight corrections.
+**Flight Charges** automatically calculate and apply billing for flight operations based on configurable products. Each product defines which flights to charge (via filters), which members to charge (based on paying member assignment and group membership), and how much to charge (via pricing rules). The system runs calculations on flight arrival, and nightly to accommodate same-day flight corrections.
 
 ## Core Concepts
 
