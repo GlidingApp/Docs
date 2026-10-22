@@ -63,6 +63,10 @@ Following night, system processes pending ledger entries created. Payment enters
 
 Members retain right to dispute SEPA direct debits for 8 weeks after settlement (European banking regulation). The system monitors processed transactions via weekly chargeback detection task, which queries Mollie API for status changes on all direct debit payments from the previous 8 weeks. Detected chargebacks reverse the ledger entry, add descriptive remark, and immediately notify administrators via email. Administrators should contact affected members to resolve payment disputes and may suspend direct debit access for members with repeated chargebacks.
 
+### 7. Declarations
+
+**Declarations** let members claim expenses they made for the club, such as materials or travel costs. Administrators first create one or more products of type **Declaration** in **Financial** → **Products**, which serve as categories. Optionally they enable **Attachment mandatory** per product, so members must add a receipt. Members submit a declaration via **My Account** → **Declaratie indienen** by choosing a category and entering amount, remark and an optional evidence file. While the declaration is pending, the member can still change or delete it. The submitted amount shows in the ledger as pending with a balance impact of zero. Once an administrator approves it, the amount is added as a positive ledger entry and the balance increases. 
+
 ## Admin Actions
 
 ### Verify Mollie Direct Debit Configuration
@@ -122,3 +126,14 @@ Members retain right to dispute SEPA direct debits for 8 weeks after settlement 
 3. Contact member to understand dispute reason and resolve underlying issue
 4. Options: request voluntary payment via alternative method, provide documentation to support original charge, or write off amount if dispute is justified
 5. Monitor member for repeated chargeback patterns (may indicate systemic billing disagreement requiring mandate suspension)
+
+### Review Declarations
+
+**What:** Approve or reject expense declarations submitted by members  
+**When:** After receiving the nightly email about declarations waiting for review  
+**Permission:** "Edit financial"
+
+**How:**
+1. **Financial** → **Declarations**. If no declaration product exists yet, use the information box to add one first
+2. Click a pending declaration to view the member's remark and evidence file
+3. Adjust the amount if required, then click **Approve** to book the amount on the member's account, or **Reject** to set the amount to 0

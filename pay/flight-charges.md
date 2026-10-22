@@ -2,13 +2,13 @@
 
 ## Overview
 
-**Flight Charges** automatically calculate and apply billing for flight operations based on configurable products. Each product defines which flights to charge (via filters), which members to charge (based on paying member assignment and group membership), and how much to charge (via pricing rules). The system runs calculations nightly to accommodate same-day flight corrections.
+**Flight Charges** automatically calculate and apply billing for flight operations based on configurable products. Each product defines which flights to charge (via filters), which members to charge (based on paying member assignment and group membership), and how much to charge (via pricing rules). The system runs calculations on flight arrival, and nightly to accommodate same-day flight corrections.
 
 ## Core Concepts
 
 ### 1. Flight Charge Flow
 
-**Flight charge flow** applies products to flights through three sequential filters. First, the **account holder filter** determines whether the product charges user accounts or voucher accounts. For user accounts, the system identifies the paying member from the flight (or splits 50/50 for dual flights) and checks membership type and group restrictions. Second, the **flight characteristics filter** evaluates flight properties (start method, aircraft category, departure time, altitude, duration, training flags) using AND-logic across all defined filters. Third, the **price calculation** applies matching pricing rules to determine the charge amount. The system evaluates all active products nightly and creates ledger entries for each matching flight-product combination.
+**Flight charge flow** applies products to flights through three sequential filters. First, the **account holder filter** determines whether the product charges user accounts or voucher accounts. For user accounts, the system identifies the paying member from the flight and checks membership type and group restrictions. If the flight has a **split payment** (a second paying member), the restrictions are only checked for the first paying member; the resulting charge of a user product is split 50/50 into one ledger entry per paying member. Second, the **flight characteristics filter** evaluates flight properties (start method, aircraft category, departure time, altitude, duration, training flags) using AND-logic across all defined filters. Third, the **price calculation** applies matching pricing rules to determine the charge amount. The system evaluates all active products nightly and creates ledger entries for each matching flight-product combination.
 
 ### 2. Product Types
 
@@ -34,12 +34,10 @@ There are scenario's where you'd like to add multiple prices, for example for TM
 
 ### 6. Two-Flight Aerotow Model
 
-The GlidingApp **Two-flight aerotow model** represents each aerotow as separate flight records for the glider and the tug. The glider flight has start method is "tow" and the tug flight has start method is "tmg-a" (touring motor glider) or "sep-a" (single-engine piston). Clubs implementing aerotow charges must create products that filter for tug flights (start method in ['tmg-a', 'sep-a']) and typically restrict to tow aircraft (category = 'tow'). 
-
-The paying member assignment synchronizes between connected flights, ensuring the glider pilot gets charged for their tow service. This architecture enables billing for tow service (charged to glider pilot), plus independent tracking of tow aircraft operations.
+The GlidingApp **Two-flight aerotow model** represents each aerotow as separate flight records for the glider and the tug. The glider flight has start method is "tow" and the tug flight has start method is "tmg-a" (touring motor glider) or "sep-a" (single-engine piston). Clubs implementing aerotow charges must realize by selecting "tow height" you in fact take the height of the aerotow plane.
 
 :::info Migrating to Two-Flight Aerotow Billing
-Clubs migrating from single-record systems typically import only glider "tow" flights initially. For financial implementation, create a product that charges tug flights (tmg-a/sep-a start method) at the desired rate structure. 
+Clubs migrating from single-record systems typically import only glider "tow" flights initially, and thus do not have the tow_height available to create products on.
 :::
 
 ### 7. Nightly Calculation Cycle
