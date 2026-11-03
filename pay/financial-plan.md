@@ -20,7 +20,7 @@ The GlidingApp **Financial plan** establishes member billing, payment collection
 
 **Online payments** integrate with Mollie payment provider, enabling members to pay directly from their account page via activated payment methods (e.g. Pay by Bank, PayPal, Ideal). Please note that transaction costs will apply, refer to [Mollie pricing](https://www.mollie.com/pricing) for current transaction fees. UK clubs benefit from Mollie's Pay by Bank option, which offers lower transaction fees than card payments.
 
-**Direct Debit** can be activated in the account. Either [SEPA]](https://docs.mollie.com/docs/sepa-direct-debit) for EURO based payments, or [BACS](https://docs.mollie.com/docs/bacs)CS for pound based payments. 
+**Direct Debit** can be activated in the account. Either [SEPA](https://docs.mollie.com/docs/sepa-direct-debit) for EURO based payments, or [BACS](https://docs.mollie.com/docs/bacs) for pound based payments. 
 
 ### 4. Financial Reports
 
@@ -30,11 +30,11 @@ The GlidingApp **Financial plan** establishes member billing, payment collection
 
 **Balance reminders** notify members when their account requires payment attention. The system evaluates all member balances during nightly task execution (Monday mornings) and sends emails to members whose balance falls below the configured threshold (send_balance_min_amount). Reminder emails include current balance formatted in club currency, direct link to account page for payment, and customizable header message (send_balance_email_header) explaining payment instructions and club contact information. The reminder system respects test mode—emails do not send while payment_testmode = true, preventing confusion during financial system setup. Administrators enable automatic reminders in **Financial** → **Settings** → toggle **Send Balance Reminders** → set **Minimum Balance for Reminder** (e.g., -50 for members owing more than 50). Members receive at most one reminder per week regardless of balance changes.
 
-### 6. SEPA Direct Debit
+### 6. SEPA/BACS Direct Debit
 
-**SEPA direct debit** automates payment collection by charging member bank accounts directly when balances reach configured thresholds. The system processes direct debits through Mollie's SEPA mandate infrastructure, which handles European banking regulations (including United Kingdom), authorization workflows, and failure recovery. Direct debit integrates with the existing balance-based accounting system—successful charges create positive ledger entries identical to manual payments, maintaining unified financial records.
+**SEPA/BACS direct debit** automates payment collection by charging member bank accounts directly when balances reach configured thresholds. The system processes direct debits through Mollie's SEPA/BACS mandate infrastructure, which handles European banking regulations (including United Kingdom), authorization workflows, and failure recovery. Direct debit integrates with the existing balance-based accounting system—successful charges create positive ledger entries identical to manual payments, maintaining unified financial records.
 
-The implementation requires Mollie profile configuration (SEPA direct debit must be enabled on your Mollie profile), member mandate activation (each member authorizes direct debit via one-time bank authentication), and settlement scheduling based on club preferences. The two-phase processing workflow creates pending charges with advance notification before submitting to Mollie, allowing administrative review and member preparation. Failed payments trigger automatic retry logic with status tracking and administrative alerts.
+The implementation requires Mollie profile configuration (SEPA/BACS direct debit must be enabled on your Mollie profile), member mandate activation (each member authorizes direct debit via one-time bank authentication), and settlement scheduling based on club preferences. The two-phase processing workflow creates pending charges with advance notification before submitting to Mollie, allowing administrative review and member preparation. Failed payments trigger automatic retry logic with status tracking and administrative alerts.
 
 #### Direct Debit Modes
 
