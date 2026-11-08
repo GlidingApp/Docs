@@ -24,7 +24,21 @@ The GlidingApp **Financial plan** establishes member billing, payment collection
 
 ### 4. Financial Reports
 
-**Financial reports** export financial data for external accounting system integration. Reports generate as Excel files from **Financial** → **Settings** → select period → **Download Report**. Each report contains three worksheets: **User Balances** (all members with transactions in the period, showing final balance), **Flights** (flight-by-flight details with total charge per flight), and **Summary** (aggregated statistics). The recommended accounting approach treats GlidingApp as the creditor/debitor system, and have export reports as revenue categories (winch launches, aerotows, glider hire) and open receivables (sum of negative member balances). The aggregated data can be imported in your club's bookkeeping software. 
+**Financial reports** export financial data for external accounting system integration. Reports generate as Excel files from **Financial** → **Settings** → **Reports** → select a year, month, week or date range → **Download**. Each report contains user valance, flights, vouchers, transactions and journal exports (summarized and detailed).
+
+#### Export to Xero
+
+Besides the Excel report, GlidingApp exports a **Xero Journal summary**: a CSV file in Xero's manual journal import format. It does not export each transaction. Instead, a period is summarized into balanced double-entry journals, where the amounts are summed per account and tax rate. A week with hundreds of flights, payments and fees therefore becomes a few dozen lines in Xero. The Excel export contains the journal worksheets which includes a check table that proves total debits equal total credits, and that the member mutations in the journal match the user_balances worksheet. This provides a complete auditable datatrail.
+
+Lines are booked to the ledger accounts of your own chart of accounts. Revenue and expense lines use the **Ledger account** of each product, and the system accounts (member receivables, bank, payment clearing, payments in transit, VAT payable, VAT receivable and manual adjustments) use the **Default ledger accounts** card in **Financial** → **Settings**. Note: Each of these default accounts needs a ledger code before the export can be downloaded. Products without a ledger account are exported with an empty account code, which Xero rejects on import, so fill this in for every product.
+
+The values are exported **excluding VAT**. Each revenue or expense line carries the net amount and the name of the Xero tax rate, such as "20% (VAT on Income)", "Zero Rated Income", "Exempt Income" or "No VAT" (and the "Expenses" variants for declarations). Xero calculates and books the VAT itself. The member receivable is exported as two rows, a **Total net amount** and a **Total tax amount**, so that the journal balances once Xero has added the VAT. This means the rows in the file do not sum to zero by themselves; they sum to the VAT that Xero adds on import. The tax rate names must match the tax rates in your Xero organisation exactly, and are translated into the language of your club.
+
+To import the file in Xero, open **Reporting** → **All reports** → **Journal Report** → **Go to manual journals** → **Import**, select the file, click **Import** and then **Complete Import**. The journals are created as drafts. The **Amounts are** setting is not part of the CSV file, so check on a draft that it reads **Tax Exclusive**; if it shows **No Tax** or **Tax Inclusive**, change it to **Tax Exclusive** before posting, otherwise Xero cannot apply the tax rates and the amounts will not balance. Review the drafts and post them.
+
+#### Period closure
+
+After the import into Xero, close the exported period in GlidingApp. Go to **Financial** → **Settings** → **Close transactions** and set **Closed until** to the day after the last exported day. Transactions dated before this date can then no longer be added or edited, and flights before this date are no longer recalculated. You can also use **Automatically close after** to move the closing date forward every night. Closing the period matters because the exported figures are now also in your accounting system. If a transaction was edited after the export, GlidingApp and your accounting software (like Xero) would no longer agree, and the next export would not reproduce what you already booked. If a transaction in a closed period must be corrected, do not edit it. Credit the amount directly instead, which creates a new transaction in the current period, and this correction flows into the next export.
 
 ### 5. Balance Reminders
 
@@ -137,3 +151,16 @@ Members retain right to dispute SEPA direct debits for 8 weeks after settlement 
 1. **Financial** → **Declarations**. If no declaration product exists yet, use the information box to add one first
 2. Click a pending declaration to view the member's remark and evidence file
 3. Adjust the amount if required, then click **Approve** to book the amount on the member's account, or **Reject** to set the amount to 0
+
+### Export a Journal to Xero
+
+**What:** Download the journal summary of a period and import it into Xero  
+**When:** After each period (for example weekly or monthly) that you want to book in Xero  
+**Permission:** "Edit financial"
+
+**How:**
+1. **Financial** → **Settings** → **Default ledger accounts**: fill in the ledger code for each default account, and make sure every product has a **Ledger account**
+2. **Financial** → **Settings** → **Reports**: select year, month, week or a date range
+3. Click **Xero Journal summary** to download the CSV file. If a default ledger code is missing, an error lists the accounts to complete
+4. In Xero, import the file via **Journal Report** → **Go to manual journals** → **Import**, check that **Amounts are** is **Tax Exclusive**, and post the drafts
+5. In GlidingApp, set **Closed until** under **Close transactions** to the day after the exported period
